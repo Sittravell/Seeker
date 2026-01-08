@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Compass, Film, Tv, Star, User } from 'lucide-react';
 

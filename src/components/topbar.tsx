@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate, Link, useLocation } from 'react-router-dom';
 import { Search, X, User as UserIcon, LogOut } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';

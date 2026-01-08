@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { RecommendationApi } from '@/api';

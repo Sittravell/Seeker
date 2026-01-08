@@ -20,7 +20,7 @@ export function MultiSearchResults({ query }: Props) {
             {results.map((item) => {
                 const cardItem: RecommendationApi.RecommendationResult = {
                     tmdbId: item.id!,
-                    title: item.title || item.name || 'Unknown',
+                    title: item.title || 'Unknown',
                     overview: item.overview || null,
                     poster_path: item.poster_path || null,
                     mediaType: item.media_type === 'movie' ? 'MOVIE' : 'TV'

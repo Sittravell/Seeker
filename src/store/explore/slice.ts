@@ -38,16 +38,12 @@ const exploreSlice = createSlice({
             state.error = action.payload as string;
         });
 
-        // Submit Interaction
         builder.addCase(submitExploreInteraction.pending, (state) => {
-            // Optional: could set a 'saving' state if needed
         });
         builder.addCase(submitExploreInteraction.fulfilled, (state, action) => {
-            // Remove the item from the queue
             state.queue = state.queue.filter(item => item.tmdbId !== action.payload.tmdbId);
         });
         builder.addCase(submitExploreInteraction.rejected, (state, action) => {
-            // Handle error (maybe show toast?)
             console.error('Interaction failed:', action.payload);
         });
     },

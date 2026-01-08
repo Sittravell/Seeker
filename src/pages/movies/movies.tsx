@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
 import { Loader } from 'lucide-react';
