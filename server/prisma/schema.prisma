@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int               @id @default(autoincrement())
+  username       String            @unique @default(cuid())
+  email          String            @unique
+  password       String
+  profilePicture String?
+  createdAt      DateTime          @default(now())
+  interactions   UserInteraction[]
+  scores         TitleScore[]
+}
+
+model Movie {
+  id           Int     @id @default(autoincrement())
+  title        String
+  genres       String
+  keywords     String
+  overview     String?
+  poster_path  String?
+  final_score  Float   @default(0)
+  popularity   Float   @default(0)
+  vote_average Float   @default(0)
+  release_date String?
+
+  @@index([final_score])
+}
+
+model TVShow {
+  id             Int     @id @default(autoincrement())
+  title          String
+  genres         String
+  keywords       String
+  overview       String?
+  poster_path    String?
+  final_score    Float   @default(0)
+  popularity     Float   @default(0)
+  vote_average   Float   @default(0)
+  first_air_date String?
+
+  @@index([final_score])
+}
+
+model UserInteraction {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  tmdbId    Int
+  mediaType String   @default("MOVIE")
+  type      String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, tmdbId, mediaType])
+}
+
+model TitleScore {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  tmdbId    Int
+  mediaType String // MOVIE or TV
+  score     Float
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, tmdbId, mediaType])
+  @@index([userId, score])
+}
